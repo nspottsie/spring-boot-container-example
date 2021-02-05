@@ -1,0 +1,25 @@
+{
+    "family": "sample-fargate", 
+    "networkMode": "awsvpc",
+    "executionRoleArn": "arn:aws:iam::<<ACCOUNT_ID>:role/Spring-Boot-Fargate-Example",
+    "containerDefinitions": [
+        {
+            "name": "spring-boot-app", 
+            "image": "<<ACCOUNT_ID>>.dkr.ecr.us-east-1.amazonaws.com/spring-boot-docker:latest",
+            "essential": true,
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "spring-boot",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "spring-boot-example"
+                }
+            }
+        }
+    ], 
+    "requiresCompatibilities": [
+        "FARGATE"
+    ], 
+    "cpu": "256", 
+    "memory": "512"
+}
